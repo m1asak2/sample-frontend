@@ -1,0 +1,18 @@
+version: "3"
+services:
+  frontend-app:
+    container_name: frontend-app
+    build:
+      context: ../
+      dockerfile: Dockerfile
+    working_dir: "/app"
+    volumes:
+      - ../app:/app
+    environment:
+      TZ: Asia/Tokyo
+      LANG: C.UTF-8
+      CHOKIDAR_USEPOLLING: 1
+    tty: true
+    stdin_open: true
+    ports:
+      - 8073:3000

@@ -1,0 +1,21 @@
+steps:
+- id: "yarn install"
+  name: node
+  entrypoint: yarn
+  args: ['install']
+  # dir: "event_front"
+# - id: "yarn global"
+#   name: node
+#   entrypoint: yarn
+#   args: ["global" ,"add" ,"@vue/cli"]
+- id: "yarn build"
+  name: node
+  entrypoint: yarn
+  args: ["build"]
+- id: "yarn generate"
+  name: node
+  entrypoint: yarn
+  args: ["generate"]
+- id: "deploy"
+  name: gcr.io/$PROJECT_ID/firebase
+  args: ['deploy', '--project=$PROJECT_ID', '--only=hosting']
